@@ -1,9 +1,9 @@
-import { Container } from "@/shared/components/ui/Container/";
+import { Container } from "@/shared/components/ui/Container";
 import { Outlet } from "react-router";
 
 
 
-function AppRoot() {
+function MainLayout() {
    return(
      <main>
         <Container>
@@ -13,4 +13,4 @@ function AppRoot() {
    )
 }
 
-export default AppRoot;
+export default MainLayout;

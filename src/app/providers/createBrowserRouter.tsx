@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router";
 import RootPage from "@/pages/RootPage";
-import AppRoot from "@/app/layouts/AppRoot";
 import OfferPage from "@/pages/OfferPage";
+import MainLayout from "@/app/layouts/Main";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AppRoot />,
+    element: <MainLayout />,
     errorElement: <>not found</>,
     children: [
 

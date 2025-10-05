@@ -1,14 +1,14 @@
 import { RouterProvider } from "react-router";
+import { TanstackQueryProvider } from "./providers/tanStackQueryProvider";
 
 import router from "@/app/providers/createBrowserRouter";
 
 
-
 function App() {
   return (
-    <div>
+    <TanstackQueryProvider>
       <RouterProvider router={router} />
-    </div>
+    </TanstackQueryProvider>
   )
 }
 export default App;
