@@ -1,0 +1,15 @@
+@use "sass:map";
+@use "./tokens" as *;
+
+$themes: map.get($tokens, theme);
+
+:root,
+[data-theme="dark"] {
+  @include export-vars($tokens); // все общие токены (colors, radius и т.д.)
+  @include export-vars(map.get($themes, dark), color);
+}
+
+// Светлая
+[data-theme="light"] {
+  @include export-vars(map.get($themes, light), color);
+}

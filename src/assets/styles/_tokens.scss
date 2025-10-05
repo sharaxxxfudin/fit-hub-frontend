@@ -1,0 +1,64 @@
+@use "sass:map";
+@use "sass:string";
+@use "sass:meta";
+
+$tokens: (
+  color: (
+    brand: (
+      primary: #FDB056,
+      primaryHover: #FDB070,
+      accent: #FD5656,
+      
+    ),
+    state: (
+      success: #4CAF50,
+      info: #1D5B43,
+      error: #E53935,
+      warning: #FFC107,
+    ),
+  ),
+  radius: (
+    sm: 20px,
+    xl: 30px,
+    lg: 40px,
+  ),
+  theme: (
+    dark: (
+      surface-base: #232829,
+      surface-muted: #313637,
+      border-default: #484D4E,
+      text-primary: #FFFFFF,
+      text-secondary: #BFBFBF,
+    ),
+    light: (
+      surface-base: #FFFFFF,
+      surface-muted: #F4F4F4,
+      border-default: #E0E0E0,
+      text-primary: #232829,
+      text-secondary: #555555,
+    ),
+  ),
+);
+
+
+// соединяет ключи в цепочку "colors-brand-primary"
+@function join-keys($parent, $child) {
+  @if $parent == null {
+    @return $child;
+  } @else {
+    @return "#{$parent}-#{$child}";
+  }
+}
+
+// рекурсивно разворачивает map и создаёт CSS-переменные
+@mixin export-vars($map, $prefix: null) {
+  @each $key, $value in $map {
+    $var-name: join-keys($prefix, $key);
+
+    @if meta.type-of($value) == "map" {
+      @include export-vars($value, $var-name);
+    } @else {
+      --#{$var-name}: #{$value};
+    }
+  }
+}
